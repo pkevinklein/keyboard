@@ -2,26 +2,116 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
     <script src="https://unpkg.com/tone"></script>
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
     <script src="https://unpkg.com/@tonejs/ui"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" type="text/css" />
-    <title>Proyecto Final</title>
+    <title>Virtual Keyboard</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   </head>
   <body id="body">
     <div>
-      <h1>Hello World</h1>
-
-      <!-- <tone-demo>
-  <tone-play-toggle></tone-play-toggle>
-</tone-demo> -->
-      <!--
-<tone-slider label="bpm" min="60" max="240" exp="2" value="120"></tone-slider> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-9 rounded">
+            <h1 class="text-white">
+              Press "o" to start recording and press "p" to stop
+            
+            </h1>
+            <button id="new-recording" type="button" class="btn btn-danger">
+              Erase Track
+            </button>
+            <audio controls></audio>
+            <div
+            id="rec"
+            class="spinner-border text-danger spinner"
+            role="status"
+          >
+          </div> 
+          <div>
+          <h2 id="recOn" class="recOnProgress">Recording...</h2>
+        </div>
+          </div>
+          <div
+            class="col-4 alert alert-info shadow p-3 mb-5 bg-white rounded"
+            role="alert"
+          >
+            Effects:<br />
+            <button id="effect0" type="button" class="btn btn-outline-primary">
+              Synth
+            </button>
+            <button
+              id="effect1"
+              type="button"
+              class="btn btn-outline-secondary"
+            >
+              MembraneSynth
+            </button>
+            <button id="effect2" type="button" class="btn btn-outline-success">
+              AMSynth
+            </button>
+            <button id="effect3" type="button" class="btn btn-outline-danger">
+              Synth(sawtooth)
+            </button>
+            <button id="effect4" type="button" class="btn btn-outline-warning">
+              MonoSynth
+            </button>
+            <button id="effect5" type="button" class="btn btn-outline-info">
+              PolySynth
+            </button>
+            <button id="effect6" type="button" class="btn btn-outline-dark">
+              DuoSynth
+            </button>
+            <!-- <button id="snare">Snare</button> -->
+            <!-- <button id="bass">Bass</button> -->
+            <div class="change-octaves">
+              <br/>
+              Change Octaves:
+              <br />
+              <button id="down" type="button" class="btn btn-outline-dark">
+                <-
+              </button>
+              <button id="up" type="button" class="btn btn-outline-dark">
+                ->
+              </button>
+              <!-- <h6>Or you can also use the "left" and "right" arrow keys.</h6> -->
+            </div>
+            
+            <button id="kick" class="btn btn-light">Party</button>
+          </div>
+          <div class="col-6">
+            <ul class="set">
+              <li id="do"class="white a"><h2>a</h2></li>
+              <li id="doSos"class="black ds"><h2 id="black-key">w</h2></li>
+              <li id="re"class="white s"><h2>s</h2></li>
+              <li id="reSos"class="black cs"><h2 id="black-key">e</h2></li>
+              <li id="mi"class="white d"><h2>d</h2></li>
+              <li id="fa"class="white f"><h2>f</h2></li>
+              <li id="faSos"class="black as"><h2 id="black-key">t</h2></li>
+              <li id="sol"class="white g"><h2>g</h2></li>
+              <li id="solSos"class="black gs"><h2 id="black-key">z</h2></li>
+              <li id="la"class="white h"><h2>h</h2></li>
+              <li id="laSos"class="black fs"><h2 id="black-key">u</h2></li>
+              <li id="si"class="white j"><h2>j</h2></li>
+              <li id="DO"class="white k"><h2>k</h2></li>
+            </ul>
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="checks">
+    <!-- <div class="checks">
       <div>
         <input type="checkbox" />
         <input type="checkbox" />
@@ -52,34 +142,23 @@
         <input type="checkbox" />
         <input type="checkbox" />
       </div>
-    </div>
-    <button id="effect1">MembraneSynth</button>
-    <button id="effect2">AMSynth</button>
-    <button id="effect3">Synth</button>
-    <button id="effect4">MonoSynth</button>
-    <button id="effect5">Piano</button>
-    <button id="kick">Kick</button>
-    <button id="bass">Bass</button>
-    <button id="down"><</button>
-    <button id="up">></button>
+    </div> -->
 
-    <ul class="set">
-      <li class="white a"><h2>a</h2></li>
-      <li class="black ds"><h2 id="black-key">w</h2></li>
-      <li class="white s"><h2>s</h2></li>
-      <li class="black cs"><h2 id="black-key">e</h2></li>
-      <li class="white d"><h2>d</h2></li>
-      <li class="white f"><h2>f</h2></li>
-      <li class="black as"><h2 id="black-key">t</h2></li>
-      <li class="white g"><h2>g</h2></li>
-      <li class="black gs"><h2 id="black-key">z</h2></li>
-      <li class="white h"><h2>h</h2></li>
-      <li class="black fs"><h2 id="black-key">u</h2></li>
-      <li class="white j"><h2>j</h2></li>
-      <li class="white k"><h2>k</h2></li>
-    </ul>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
     <!-- <script src="scriptbass.js"></script>
 <script src="scriptkick.js"></script> -->
